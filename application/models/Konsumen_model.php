@@ -181,7 +181,7 @@ class Konsumen_model extends CI_model
     {
         // $query1 = "SELECT * FROM user where username='$field' or email = '$field'";
 
-        $query = "SELECT id_bayar FROM pemesanan order by id_bayar DESC limit 1";
+        $query = "SELECT id_bayar FROM pembayaran order by id_bayar DESC limit 1";
 
         return $this->db->query($query)->row_array();
     }

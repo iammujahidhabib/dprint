@@ -975,31 +975,36 @@ class Konsumen extends CI_Controller
             'notes' => $notes,
         ];
         if ($jenis_bayar == "dp") {
-            $data_bayar['bukti_dp']= $this->_uploadFile();
+            $data_bayar['bukti_dp'] = $this->_uploadFile();
         } else {
-            $data_bayar['bukti_bayar']= $this->_uploadFile();
+            $data_bayar['bukti_bayar'] = $this->_uploadFile();
         }
 
         $this->db->insert('pembayaran', $data_bayar);
 
         $id_bayar = $this->Konsumen_model->cekIdBayarLast();
+        // $id_pess = $this->Konsumen_model->cekIdPesananLast();
 
         $data_update_pesanan = [
             'status_pesanan' => 'pending',
-            'id_bayar' => $id_bayar['id_bayar'] + 1,
+            'id_bayar' => $id_bayar['id_bayar'],
         ];
 
         $data_updd = [
-            'id_user' => $id_user,
+            'id_pesanan' => $id_pesanan,
             // 'status_pesanan' => 'checkout',
         ];
+        
+        echo "<pre>";
+        print_r($id_bayar);
+        echo "</pre>";
         // echo "<pre>";
         // print_r($data_bayar);
         // echo "</pre>";
 
-        $this->db->update('pemesanan', $data_update_pesanan, $data_updd);
+        $this->Konsumen_model->update('pemesanan', $data_updd, $data_update_pesanan);
 
-        $this->kirimStatusPesanan($email);
+        // $this->kirimStatusPesanan($email);
 
         redirect('konsumen/statusPemesanan');
     }
@@ -1045,7 +1050,7 @@ class Konsumen extends CI_Controller
 
         $id_bayar = $this->input->post('id_bayar');
         echo  $id_bayar;
-        $respone = $this->Konsumen_model->update('pembayaran',['id_bayar' => $id_bayar], $data);
+        $respone = $this->Konsumen_model->update('pembayaran', ['id_bayar' => $id_bayar], $data);
         echo $respone;
         redirect('konsumen/statusPemesanan/proses');
     }

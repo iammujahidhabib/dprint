@@ -88,8 +88,11 @@
                                                                 <span class="sr-only">Toggle Dropdown</span>
                                                             </button>
                                                             <div class="dropdown-menu">
-
-
+                                                                <?php if ($a['jenis_bayar'] == 1) {
+                                                                    $typeee = 'Lunas';
+                                                                } else {
+                                                                    $typeee = 'DP';
+                                                                } ?>
                                                                 <?php
                                                                 if ($a['status_pesanan'] == 'Pembayaran kurang (sedang diproses)') {
                                                                 ?>
