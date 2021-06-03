@@ -66,28 +66,28 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="inputEmail4">Ukuran S</label>
-                                    <input type="number" class="form-control" id="" name="uk_s" value="0" required>
+                                    <input type="number" min="0" class="form-control" id="" name="uk_s" value="0" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4">Ukuran M</label>
-                                    <input type="number" class="form-control" id="inputPassword4" name="uk_m" value="0">
+                                    <input type="number" min="0" class="form-control" id="inputPassword4" name="uk_m" value="0">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4">Ukuran L</label>
-                                    <input type="number" class="form-control" id="inputPassword4" name="uk_l" value="0">
+                                    <input type="number" min="0" class="form-control" id="inputPassword4" name="uk_l" value="0">
                                 </div>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputEmail4">Ukuran XL</label>
-                                <input type="number" class="form-control" id="inputEmail4" name="uk_xl" value="0">
+                                <input type="number" min="0" class="form-control" id="inputEmail4" name="uk_xl" value="0">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputPassword4">Ukuran XXL</label>
-                                <input type="number" class="form-control" id="inputPassword4" value="0" name="uk_xxl">
+                                <input type="number" min="0" class="form-control" id="inputPassword4" value="0" name="uk_xxl">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputPassword4">Ukuran 3XL</label>
-                                <input type="number" class="form-control" id="inputPassword4" value="0" name="uk_3xl">
+                                <input type="number" min="0" class="form-control" id="inputPassword4" value="0" name="uk_3xl">
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-12">

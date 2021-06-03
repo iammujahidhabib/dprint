@@ -33,6 +33,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">No.</th>
+                                        <th scope="col">Atas Nama</th>
                                         <th scope="col">Jumlah Barang</th>
                                         <th scope="col">Total harga</th>
                                         <th scope="col">Jenis Bayar</th>
@@ -58,7 +59,8 @@
                                         ?>
                                         <tr>
                                             <th scope="row"><?= $no++ ?></th>
-                                            <td><?= $pesanan['jumlah_barang'] ?></td>
+                                            <td><?= $pesanan['nama_pemesan'] ?></td>
+                                            <td><?= $pesanan['jmlBarang'] ?></td>
                                             <td><?= $hasil_rupiah ?></td>
                                             <td><?= ($pesanan['jenis_bayar'] == 1) ? 'Lunas' : 'Pakai DP' ?> </td>
                                             <td><?= $pesanan['status_pesanan'] ?></td>
@@ -76,7 +78,7 @@
                                                 <?php endif; ?>
                                                 <?php if ($pesanan['status_pesanan'] == "pesanan dikirim") : ?>
                                                     <a class="btn btn-info" href="<?= base_url('konsumen/selesaikan_pesanan/') . $pesanan['id_pesanan'] ?>">Selesai</a>
-                                                <?php else : ?>
+                                                <?php elseif($pesanan['bukti_bayar'] == '' && ($pesanan['status_pesanan'] != 'sedang diproses' || $pesanan['status_pesanan'] !='Pembayaran kurang (sedang diproses)')) : ?>
                                                     <a href=" <?= base_url('konsumen/batal_pesan/' . $pesanan['id_bayar']) ?>" class="btn btn-danger">Batalkan</a>
                                                 <?php endif; ?>
                                             </td>

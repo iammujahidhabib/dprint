@@ -18,9 +18,19 @@
                             <?php foreach ($user as $id) : ?>
                                 <h3>Profile</h3>
                                 <div class="form-group form-group--inline">
+                                    <label>Fullname<span></span>
+                                    </label>
+                                    <input class="form-control" type="text" name="fullname" value="<?= $id['fullname'] ?>">
+                                </div>
+                                <div class="form-group form-group--inline">
                                     <label>Username<span></span>
                                     </label>
                                     <input class="form-control" type="text" name="username" value="<?= $id['username'] ?>" disabled>
+                                </div>
+                                <div class="form-group form-group--inline">
+                                    <label>Phone Number<span></span>
+                                    </label>
+                                    <input class="form-control" type="text" name="phonenumber" value="<?= $id['phonenumber'] ?>">
                                 </div>
                                 <div class="form-group form-group--inline">
                                     <label>Email<span></span>

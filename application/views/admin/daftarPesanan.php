@@ -90,34 +90,44 @@
                                                             <div class="dropdown-menu">
                                                                 <?php if ($a['jenis_bayar'] == 1) {
                                                                     $typeee = 'Lunas';
+                                                                    $is_dp='';
                                                                 } else {
+                                                                    $is_dp='?is_dp=yes';
                                                                     $typeee = 'DP';
                                                                 } ?>
-                                                                <?php
-                                                                if ($a['status_pesanan'] == 'Pembayaran kurang (sedang diproses)') {
-                                                                ?>
-                                                                    <a href="<?= base_url('admin/toltervendor/1/') .
-                                                                                    $a['id_bayar'] . '/' . $a['total_harga'] ?>" class="dropdown-item bg-success text-white"> Terima Pembayaran Pelunasan</a>
-                                                                    <a href=" <?= base_url('admin/toltervendor/0/') .
-                                                                                    $a['id_bayar'] ?>" class="dropdown-item bg-danger text-white">Tolak Pembayaran Pelunasan</a>
-                                                                    <button class="dropdown-item bg-info text-white" data-bs-toggle="modal" data-bs-target="#exampleModal" id="lihatBukti" data-foto="<?= $a['bukti_bayar']; ?>">
+                                                                <?php if ($a['bukti_dp'] != '') { ?>
+                                                                    <button class="dropdown-item bg-secondary text-white" data-bs-toggle="modal" data-bs-target="#exampleModal" id="lihatBukti" data-foto="<?= $a['bukti_dp']; ?>">
+                                                                        Lihat Bukti Bayar DP
+                                                                    </button>
+                                                                <?php } ?>
+                                                                <?php if ($a['bukti_bayar'] != '') { ?>
+                                                                    <button class="dropdown-item bg-secondary text-white" data-bs-toggle="modal" data-bs-target="#exampleModal" id="lihatBukti" data-foto="<?= $a['bukti_bayar']; ?>">
                                                                         Lihat Bukti Bayar Pelunasan
                                                                     </button>
-
-                                                                    <button class="dropdown-item bg-warning text-white" data-bs-toggle="modal" data-bs-target="#exampleModal" id="lihatBukti" data-foto="<?= $a['bukti_dp']; ?>">
-                                                                        Lihat Bukti Bayar DP
-                                                                    </button>
-                                                                <?php } elseif ($a['status_pesanan'] == 'sudah lunas' || $a['status_pesanan'] == 'pending') {
+                                                                <?php } ?>
+                                                                <?php if ($a['status_pesanan'] == 'Pembayaran kurang (sedang diproses)') { ?>
+                                                                    <a href="<?= base_url('admin/toltervendor/1/') .
+                                                                                    $a['id_bayar'] . '/' . $a['total_harga'] ?>" class="dropdown-item bg-success text-white"> Terima Pembayaran Lunas</a>
+                                                                    <a href=" <?= base_url('admin/toltervendor/0/') .
+                                                                                    $a['id_bayar'] ?>" class="dropdown-item bg-danger text-white">Tolak Pembayaran Lunas</a>
+                                                                    <a href="<?= base_url('admin/toltervendor/5/') .
+                                                                                    $a['id_bayar'] ?>" class="dropdown-item bg-warning text-white"> Lakukan Pelunas</a> 
+                                                                <?php } elseif ($a['status_pesanan'] == 'sudah lunas') {
                                                                 ?>
                                                                     <a href="<?= base_url('admin/toltervendor/1/') .
-                                                                                    $a['id_bayar'] . '/' . $a['total_harga'] ?>" class="dropdown-item bg-success text-white">Terima Pembayaran DP</a>
+                                                                                    $a['id_bayar'] . '/' . $a['total_harga'] ?>" class="dropdown-item bg-success text-white">Terima Pembayaran Lunas</a>
                                                                     <a href="<?= base_url('admin/toltervendor/0/') .
-                                                                                    $a['id_bayar'] ?>" class="dropdown-item bg-danger text-white"> Tolak Pembayaran DP</a>
+                                                                                    $a['id_bayar'] ?>" class="dropdown-item bg-danger text-white"> Tolak Pembayaran Lunas</a>
                                                                     <a href="<?= base_url('admin/toltervendor/5/') .
                                                                                     $a['id_bayar'] ?>" class="dropdown-item bg-warning text-white"> Belum Lunas</a>
-                                                                    <button class="dropdown-item bg-info text-white" data-bs-toggle="modal" data-bs-target="#exampleModal" id="lihatBukti" data-foto="<?= $a['bukti_dp']; ?>">
-                                                                        Lihat Bukti Bayar DP
-                                                                    </button>
+                                                                <?php } elseif ($a['status_pesanan'] == 'pending') {
+                                                                ?>
+                                                                    <a href="<?= base_url('admin/toltervendor/1/') .
+                                                                                    $a['id_bayar'] . '/' . $a['total_bayar'] ?>" class="dropdown-item bg-success text-white">Terima Pembayaran <?= $typeee ?></a>
+                                                                    <a href="<?= base_url('admin/toltervendor/0/') .
+                                                                                    $a['id_bayar'] ?>" class="dropdown-item bg-danger text-white"> Tolak Pembayaran <?= $typeee ?></a>
+                                                                    <a href="<?= base_url('admin/toltervendor/5/') .
+                                                                                    $a['id_bayar'] ?>" class="dropdown-item bg-warning text-white"> Belum Lunas</a>
 
                                                                 <?php } elseif ($a['status_pesanan'] == 'sedang diproses') { ?>
                                                                     <?php if ($a['bukti_bayar'] != '') { ?>

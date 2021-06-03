@@ -13,7 +13,7 @@
         <!-- <img src="<?= base_url(
                         'assetsKonsumen/'
                     ) ?>images/cart-preview/shopping-cart.png" alt="" width=150> -->
-        <h1>Testimoni dan Hasil Produk Kami</h1>
+        <h1>Testimoni Dari Hasil Produksi Kami</h1>
     </div>
 
     <div class="ps-blog-grid pt-40 pb-80">
@@ -29,12 +29,12 @@
                             <div class="ps-post__thumbnail">
                                 <!-- <a class="ps-post__overlay" href="#">
                                 </a> -->
-                                <img src="<?= base_url('assetsKonsumen/img_testi/') . $pk->foto_hasil ?>" alt="" height="250" style="border-radius: 20px;object-fit: cover;">
+                                <img src="<?= base_url('assetsKonsumen/img_testi/') . $pk->foto_hasil ?>" alt="" height="250" style="border-radius: 10px;object-fit: cover;">
                             </div>
                             <div class="ps-post__content">
                                 <h1><?=$pk->nama_kategori?></h1>
                                 <h4><?=$pk->nama_pemesan?></h4>
-                                <?php 
+                                <!-- <?php 
                                     for ($i=1; $i <=5 ; $i++) { 
                                        if($i<=$pk->bintang){
                                            echo "<i class='fa fa-star' style='color:yellow'></i>";
@@ -42,10 +42,10 @@
                                            echo "<i class='fa fa-star'></i>";
                                        }
                                     }
-                                ?>
+                                ?> -->
                             </div>
                             <center>
-                                <p style="color: #6200c4;"><?= $pk->keterangan ?></p>
+                                <p style="color: grey;"><?= $pk->keterangan ?></p>
                             </center>
                         </div>
                     </div>

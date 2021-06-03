@@ -13,13 +13,13 @@ class Admin_model extends CI_model
 
     public function getAllPesanan()
     {
-        $this->db->select('pemesanan.*,pembayaran.nama_pemesan,pembayaran.jenis_bayar,pembayaran.bukti_bayar,pembayaran.bukti_dp, SUM(jumlah_barang) jmlBarang,SUM(total_bayar) total_bayar');
+        $this->db->select('`pemesanan`.`id_bayar`,pemesanan.status_pesanan, `pembayaran`.`nama_pemesan`, `pembayaran`.`jenis_bayar`, `pembayaran`.`bukti_bayar`, `pembayaran`.`bukti_dp`, SUM(jumlah_barang) jmlBarang, SUM(total_harga) total_harga, total_bayar ');
         $this->db->from('pembayaran');
         $this->db->join('pemesanan', 'pembayaran.id_bayar = pemesanan.id_bayar');
         $this->db->join('kategori', 'pemesanan.id_kategori = kategori.id_kategori');
         $this->db->join('user', 'user.id_user = pemesanan.id_user');
         $this->db->where('pemesanan.id_bayar !=', 0);
-        $this->db->group_by('pemesanan.id_pesanan');
+        $this->db->group_by('pemesanan.id_bayar');
         return $this->db->get()->result_array();
     }
     public function getAllPesananHistory()

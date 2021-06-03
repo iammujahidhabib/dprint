@@ -154,6 +154,7 @@ class Admin extends CI_Controller
         $data['admindata'] = $this->Admin_model->getAdmin();
 
         $data['pesanan'] = $this->Admin_model->getDetailPesanan($id);
+        // print_r($data['pesanan']);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

@@ -18,24 +18,21 @@
 
     <div class="ps-blog-grid pt-40 pb-80">
         <div class="ps-container">
-
             <div class="row">
-
                 <?= $this->session->flashdata('pesan') ?>
-
                 <?php foreach ($pilih_kategori as $pk) : ?>
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 ">
                         <div class="ps-post mb-30">
                             <div class="ps-post__thumbnail">
                                 <a class="ps-post__overlay" href="<?= base_url(
-                                                                        'konsumen/pesanBarang/'
+                                                                        'konsumen/kategori/'
                                                                     ) .
                                                                         $pk->id_kategori ?>">
                                 </a>
                                 <img src="<?= base_url('assetsKonsumen/img_kategori/') . $pk->gambar_kategori ?>" alt="" height="250" style="border-radius: 20px;object-fit: cover;">
                             </div>
                             <div class="ps-post__content"><a class="ps-post__title" href="<?= base_url(
-                                                                                                'konsumen/pesanBarang/'
+                                                                                                'konsumen/kategori/'
                                                                                             ) . $pk->id_kategori ?>" style="text-align: center;margin-left:-15px"><?= $pk->nama_kategori ?></a>
                             </div>
                             <center>
@@ -44,24 +41,7 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
-
-
-
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
     </div>
     </div>

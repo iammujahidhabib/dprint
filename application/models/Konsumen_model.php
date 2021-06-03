@@ -143,9 +143,9 @@ class Konsumen_model extends CI_model
     }
     public function getPesananbyId($id, $stat)
     {
-        $query = "SELECT `pemesanan`.*, `pembayaran`.`nama_pemesan`, `pembayaran`.`bukti_bayar`, `pembayaran`.`bukti_dp`, `pembayaran`.`jenis_bayar`, SUM(jumlah_barang) jmlBarang, SUM(total_bayar) total_bayar FROM `pembayaran` JOIN `pemesanan` ON `pembayaran`.`id_bayar` = `pemesanan`.`id_bayar` JOIN `kategori` ON `pemesanan`.`id_kategori` = `kategori`.`id_kategori` JOIN `user` ON `user`.`id_user` = `pemesanan`.`id_user` 
+        $query = "SELECT pemesanan.*,user.username,kategori.nama_kategori,pembayaran.nama_pemesan,pembayaran.jenis_bayar,pembayaran.bukti_bayar,pembayaran.bukti_dp, SUM(jumlah_barang) jmlBarang,SUM(total_bayar) total_bayar FROM `pembayaran` JOIN `pemesanan` ON `pembayaran`.`id_bayar` = `pemesanan`.`id_bayar` JOIN `kategori` ON `pemesanan`.`id_kategori` = `kategori`.`id_kategori` JOIN `user` ON `user`.`id_user` = `pemesanan`.`id_user` 
         WHERE pemesanan.id_user=$id AND status_pesanan LIKE '%$stat%'
-        GROUP BY `pemesanan`.`id_pesanan`";
+        GROUP BY `pemesanan`.`id_bayar`";
         // echo $query;
         // $query = "SELECT p.id_pesanan, p.id_user, pb.id_bayar, sum(total_harga) as total_harga, sum(jumlah_barang) as jumlah_barang, status_pesanan, bukti_bayar from pembayaran pb JOIN pemesanan p on(pb.id_bayar = p.id_bayar) WHERE p.id_user=$id AND status_pesanan LIKE '%pending%' OR status_pesanan LIKE '%kurang%' OR status_pesanan LIKE '%proses%' OR status_pesanan LIKE '%dikirim%' GROUP by pb.id_bayar";
 

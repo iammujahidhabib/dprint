@@ -30,7 +30,7 @@
                             <div class="form-group form-group--inline">
                                 <label>Nama Pemesan<span>*</span>
                                 </label>
-                                <input class="form-control" type="text" name="nama_pemesan" required>
+                                <input class="form-control" type="text" name="nama_pemesan" value="<?=$this->session->fullname?>"  required>
                             </div>
                             <div class="form-group form-group--inline">
                                 <label>Alamat Email<span>*</span>
@@ -40,7 +40,7 @@
                             <div class="form-group form-group--inline">
                                 <label>No Hp<span>*</span>
                                 </label>
-                                <input class="form-control" type="text" name="phone" required>
+                                <input class="form-control" type="text" name="phone" value="<?=$this->session->phonenumber?>"  required>
                             </div>
                             <div class="form-group form-group--inline">
                                 <label>Alamat Pengiriman<span>*</span>
