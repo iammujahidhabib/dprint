@@ -138,6 +138,8 @@ class Auth extends CI_Controller
                         'email' => $user['email'],
                         'role_id' => $user['role_id'],
                         'id_user' => $user['id_user'],
+                        'fullname' => $user['fullname'],
+                        'phonenumber' => $user['phonenumber'],
                         'username' => $user['username'],
                         'password' => $user['password'],
                         'alamat'   => $user['alamat'],
