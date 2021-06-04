@@ -52,11 +52,19 @@
                                 <div class="form-group col-md-12">
                                     <label for="inputState">Pilih Paket</label>
                                     <select id="inputState" class="form-control" name="paket" id="paket" required>
-                                        <option value="" selected>Choose...</option>
+                                        <option value="" disabled selected>Paket&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Bahan&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Sablon/Bordir&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Ketebalan/Keterangan&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Harga</option>
                                         <?php
                                         $i = 1;
                                         foreach ($barang as $item) : ?>
-                                            <option value="<?= $item->id_pakaiian ?>">Paket <?= $i++ ?></option>
+                                            <option value="<?= $item->id_pakaiian ?>">
+                                                <div class="col"><?= $item->paket ?></div>
+                                                &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<div class="col"><?= $item->jenis_bahan ?></div>
+                                                <?php if ($item->jenis_bordir != '') { ?>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<div class="col"><?= $item->jenis_bordir ?></div><?php } ?>
+                                                <?php if ($item->jenis_sablon != '') { ?>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<div class="col"><?= $item->jenis_sablon ?></div><?php } ?>
+                                                <?php if ($item->ketebalan != '') { ?>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<div class="col"><?= $item->ketebalan ?></div><?php } ?>
+                                                <?php if ($item->kategori_jersey != '') { ?>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<div class="col"><?= $item->kategori_jersey ?></div><?php } ?>
+                                                &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<div class="col">Rp <?= number_format($item->harga, 2, ',', '.') ?></div>
+                                            </option>
                                         <?php endforeach;
                                         ?>
                                     </select>

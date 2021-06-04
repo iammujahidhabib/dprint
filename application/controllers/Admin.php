@@ -35,7 +35,7 @@ class Admin extends CI_Controller
         $data['admindata'] = $this->Admin_model->getAdmin();
 
         $data['pesanan'] = $this->Admin_model->getAllPesanan();
-        
+
         // echo "<pre>";
         // print_r($data['pesanan']);
         // echo "</pre>";
@@ -60,9 +60,9 @@ class Admin extends CI_Controller
 
             $this->Admin_model->tolakatauterima($data, $id);
             $cek = $this->db->query("SELECT * FROM pembayaran WHERE id_bayar =$id")->row_array();
-            if($cek['jenis_bayar'] == 0 && $cek['bukti_bayar'] != "" && $cek['bukti_dp'] != ""){
+            if ($cek['jenis_bayar'] == 0 && $cek['bukti_bayar'] != "" && $cek['bukti_dp'] != "") {
                 $this->db->update('pembayaran', $data_upd, ['id_bayar' => $id]); // jenis bayar DP berarti pelunasan
-            }elseif($cek['jenis_bayar'] == 1){
+            } elseif ($cek['jenis_bayar'] == 1) {
                 $this->db->update('pembayaran', $data_upd, ['id_bayar' => $id]); // jenis bayar lunas
             }
 
@@ -317,7 +317,7 @@ class Admin extends CI_Controller
         $data['countVendor'] = $this->Admin_model->getJmlVendor();
         $data['countBarang'] = $this->Admin_model->getJmlBarang();
 
-        $data['detail']= $this->db->where(['id_kategori'=>$id])->get('kategori')->row();
+        $data['detail'] = $this->db->where(['id_kategori' => $id])->get('kategori')->row();
         // print_r($data['detail']);
 
         $this->load->view('templates/header', $data);
@@ -379,6 +379,7 @@ class Admin extends CI_Controller
                 }
                 $data = [
                     'nama_kategori' => $this->input->post('namaKategori'),
+                    'mulai_harga' => $this->input->post('mulai') . " - " . $this->input->post('sampai'),
                     'deskripsi' => $this->input->post('deskripsiKategori'),
                     'gambar_kategori' => $file_data['file_name'],
                     'list_paket' => $file_data2['file_name'],
@@ -392,66 +393,68 @@ class Admin extends CI_Controller
     }
     public function updateKategori($id)
     {
-        $namaKategori = $this->Admin_model->getAllNamaKategori();
+        // $namaKategori = $this->Admin_model->getAllNamaKategori();
         $inputNamaKategori = $this->input->post('namaKategori');
 
-        foreach ($namaKategori as $kategori) {
-            if ($kategori['nama_kategori'] == $inputNamaKategori) {
-                $this->session->set_flashdata(
-                    'pesan',
-                    '
-				<div class="alert alert-danger alert-dismissible fade show" role="alert">
-				Nama Kategori Sudah Ada!!!
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-				</button>
-				</div>'
-                );
-                redirect('admin/tambahKategori');
-            } else {
-                $data = [
-                    'nama_kategori' => $this->input->post('namaKategori'),
-                    'deskripsi' => $this->input->post('deskripsiKategori'),
-                ];
-                if ($_FILES['gambar']['name'] != "") {
-                    $config = array(
-                        'upload_path' => './assetsKonsumen/img_kategori/',
-                        'overwrite' => false,
-                        'remove_spaces' => true,
-                        'allowed_types' => 'png|jpg|gif|jpeg',
-                        'max_size' => 10000,
-                        'xss_clean' => true,
-                    );
-                    $this->load->library('upload');
-                    $this->upload->initialize($config);
-                    // if ($_FILES['file']['name'] != "") {
-                    if ($this->upload->do_upload('gambar')) {
-                        $file_data = $this->upload->data();
-                        $data['gambar_kategori'] = $file_data['file_name'];
-                    }
-                }
-                if ($_FILES['paket']['name'] != "") {
-                    $config2 = array(
-                        'upload_path' => './assetsKonsumen/paket/',
-                        'overwrite' => false,
-                        'remove_spaces' => true,
-                        'allowed_types' => 'png|jpg|gif|jpeg',
-                        'max_size' => 10000,
-                        'xss_clean' => true,
-                    );
-                    $this->load->library('upload');
-                    $this->upload->initialize($config2);
-                    // if ($_FILES['file']['name'] != "") {
-                    if ($this->upload->do_upload('paket')) {
-                        $file_data2 = $this->upload->data();
-                        $data['list_paket'] = $file_data2['file_name'];
-                        // 'list_paket' => $file_data2['file_name'],
-                    }
-                }
-                $this->Admin_model->update('kategori',['id_kategori'=>$id],$data);
-                redirect('admin/barang');
+        // foreach ($namaKategori as $kategori) {
+        // if ($kategori['nama_kategori'] == $inputNamaKategori) {
+        //     $this->session->set_flashdata(
+        //         'pesan',
+        //         '
+        // 	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        // 	Nama Kategori Sudah Ada!!!
+        // 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        // 	<span aria-hidden="true">&times;</span>
+        // 	</button>
+        // 	</div>'
+        //     );
+        //     redirect('admin/tambahKategori');
+        // } else {
+        $data = [
+            'nama_kategori' => $this->input->post('namaKategori'),
+            'deskripsi' => $this->input->post('deskripsiKategori'),
+            'mulai_harga' => $this->input->post('mulai') . " - " . $this->input->post('sampai'),
+
+        ];
+        if ($_FILES['gambar']['name'] != "") {
+            $config = array(
+                'upload_path' => './assetsKonsumen/img_kategori/',
+                'overwrite' => false,
+                'remove_spaces' => true,
+                'allowed_types' => 'png|jpg|gif|jpeg',
+                'max_size' => 10000,
+                'xss_clean' => true,
+            );
+            $this->load->library('upload');
+            $this->upload->initialize($config);
+            // if ($_FILES['file']['name'] != "") {
+            if ($this->upload->do_upload('gambar')) {
+                $file_data = $this->upload->data();
+                $data['gambar_kategori'] = $file_data['file_name'];
             }
         }
+        if ($_FILES['paket']['name'] != "") {
+            $config2 = array(
+                'upload_path' => './assetsKonsumen/paket/',
+                'overwrite' => false,
+                'remove_spaces' => true,
+                'allowed_types' => 'png|jpg|gif|jpeg',
+                'max_size' => 10000,
+                'xss_clean' => true,
+            );
+            $this->load->library('upload');
+            $this->upload->initialize($config2);
+            // if ($_FILES['file']['name'] != "") {
+            if ($this->upload->do_upload('paket')) {
+                $file_data2 = $this->upload->data();
+                $data['list_paket'] = $file_data2['file_name'];
+                // 'list_paket' => $file_data2['file_name'],
+            }
+        }
+        $this->Admin_model->update('kategori', ['id_kategori' => $id], $data);
+        redirect('admin/barang');
+        // }
+        // }
     }
 
     public function HistoriPesanan()

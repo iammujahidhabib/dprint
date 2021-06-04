@@ -68,9 +68,19 @@
                                                 <a class="btn btn-primary" href="<?= base_url('konsumen/det_pesanan/' . $pesanan['id_bayar']) ?>">
                                                     Detail
                                                 </a>
-                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" id="bukti_bayar" data-foto="<?= $buktinya; ?>">
+                                                <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" id="bukti_bayar" data-foto="<?= $buktinya; ?>">
                                                     Bukti Bayar
-                                                </button>
+                                                </button> -->
+                                                <?php if ($pesanan['bukti_dp'] != '') { ?>
+                                                    <button type="button" class="btn btn-secondary text-white" data-toggle="modal" data-target="#exampleModal" id="bukti_bayar" data-foto="<?= $pesanan['bukti_dp']; ?>">
+                                                        Lihat Bukti Bayar DP
+                                                    </button>
+                                                <?php } ?>
+                                                <?php if ($pesanan['bukti_bayar'] != '') { ?>
+                                                    <button type="button" class="btn btn-secondary text-white" data-toggle="modal" data-target="#exampleModal" id="bukti_bayar" data-foto="<?= $pesanan['bukti_bayar']; ?>">
+                                                        Lihat Bukti Bayar Pelunasan
+                                                    </button>
+                                                <?php } ?>
                                                 <?php if ($pesanan['status_pesanan'] == "Pembayaran kurang (sedang diproses)") : ?>
                                                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#pelunasan" data-idbayar="<?= $pesanan['id_bayar'] ?>" id="pelunasannnnn">
                                                         Pelunasan
@@ -78,7 +88,7 @@
                                                 <?php endif; ?>
                                                 <?php if ($pesanan['status_pesanan'] == "pesanan dikirim") : ?>
                                                     <a class="btn btn-info" href="<?= base_url('konsumen/selesaikan_pesanan/') . $pesanan['id_pesanan'] ?>">Selesai</a>
-                                                <?php elseif($pesanan['bukti_bayar'] == '' && ($pesanan['status_pesanan'] != 'sedang diproses' || $pesanan['status_pesanan'] !='Pembayaran kurang (sedang diproses)')) : ?>
+                                                <?php elseif ($pesanan['bukti_bayar'] == '' && ($pesanan['status_pesanan'] != 'sedang diproses' || $pesanan['status_pesanan'] != 'Pembayaran kurang (sedang diproses)')) : ?>
                                                     <a href=" <?= base_url('konsumen/batal_pesan/' . $pesanan['id_bayar']) ?>" class="btn btn-danger">Batalkan</a>
                                                 <?php endif; ?>
                                             </td>

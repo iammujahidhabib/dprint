@@ -56,6 +56,22 @@ class Konsumen_model extends CI_model
 
         return $this->db->query($query)->result();
     }
+    public function getBarangNew($kategori)
+    {
+        // $kategori = strtolower($kategori);
+        $open = `"<span style='width:20%'>"`;
+        $close = `"</span>"`;
+        $query = "SELECT id_pakaiian, id_kategori,
+            concat(".$open.",paket,".$close.") AS paket, 
+            concat(".$open.",jenis_bahan,".$close.") AS jenis_bahan, 
+            CASE WHEN jenis_bordir != '' THEN concat(".$open.",jenis_bordir,".$close.") ELSE '' END AS a,
+            CASE WHEN jenis_sablon != '' THEN concat(".$open.",jenis_sablon,".$close.") ELSE '' END AS b,
+            CASE WHEN kategori_jersey != '' THEN concat(".$open.",kategori_jersey,".$close.") ELSE '' END AS c,
+            CASE WHEN ketebalan != '' THEN concat(".$open.",ketebalan,".$close.") ELSE '' END AS d, 
+            concat(".$open.",harga,".$close.") AS harga FROM pakaiian where id_kategori = $kategori";
+        echo $query;
+        return $this->db->query($query)->result();
+    }
 
     public function getNamaBarang($kategori)
     {

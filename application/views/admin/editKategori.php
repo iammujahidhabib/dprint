@@ -19,24 +19,37 @@
         <div class="container-fluid">
             <div class="container">
                 <?= $this->session->flashdata('pesan') ?>
-                <form action="<?= base_url('admin/updateKategori/'.$detail->id_kategori) ?>" enctype="multipart/form-data" method="post">
+                <form action="<?= base_url('admin/updateKategori/' . $detail->id_kategori) ?>" enctype="multipart/form-data" method="post">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nama Kategori</label>
-                        <input type="text" class="form-control" name="namaKategori" value="<?=$detail->nama_kategori?>" required>
+                        <input type="text" class="form-control" name="namaKategori" value="<?= $detail->nama_kategori ?>" required>
+                    </div>
+                    <?php 
+                    $harga = explode(" - ",$detail->mulai_harga);
+                    ?>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="exampleInputEmail1">Mulai Harga</label>
+                            <input type="text" class="form-control" name="mulai" required value="<?=$harga[0]?>">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="exampleInputEmail1">Sampai Harga</label>
+                            <input type="text" class="form-control" name="sampai" required value="<?=$harga[1]?>">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="">Deskripsi Kategori</label>
-                        <textarea class="form-control" rows="5" name="deskripsiKategori" required><?=$detail->deskripsi?></textarea>
+                        <textarea class="form-control" rows="5" name="deskripsiKategori" required><?= $detail->deskripsi ?></textarea>
                     </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-6">
                                 <h3>Gambar Kategori saat ini</h3>
-                                <img class="w-100" style="max-height:300px;object-fit: contain;" src="<?=base_url('assetsKonsumen/img_kategori/'.$detail->gambar_kategori)?>">
+                                <img class="w-100" style="max-height:300px;object-fit: contain;" src="<?= base_url('assetsKonsumen/img_kategori/' . $detail->gambar_kategori) ?>">
                             </div>
                             <div class="col-sm-6">
                                 <h3>List saat ini</h3>
-                                <img class="w-100" style="max-height:300px;object-fit: contain;" src="<?=base_url('assetsKonsumen/paket/'.$detail->list_paket)?>">
+                                <img class="w-100" style="max-height:300px;object-fit: contain;" src="<?= base_url('assetsKonsumen/paket/' . $detail->list_paket) ?>">
                             </div>
                         </div>
                     </div>
