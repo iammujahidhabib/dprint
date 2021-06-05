@@ -97,7 +97,10 @@ class Konsumen_model extends CI_model
         $this->db->where('id_user', $id);
         return $this->db->get()->result_array();
     }
-
+    public function view_where($tabel, $where) {
+        $this->db->where($where);
+        return $this->db->get($tabel);
+    }
     public function cekHarga($namaKategori, $id_barang)
     {
         $query = "SELECT harga FROM pakaiian where id_pakaiian = $id_barang";

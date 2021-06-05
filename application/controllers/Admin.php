@@ -618,4 +618,22 @@ class Admin extends CI_Controller
 
         return $namaFilesBaru;
     }
+    public function email()
+    {
+        $this->load->model('Konsumen_model');
+        if ($this->input->post()) {
+            $data = $this->Konsumen_model->update("email_conf", ['id' => 1], ['email' => $this->input->post('email'), 'password' => $this->input->post('password')]);
+            redirect('admin/email');
+        } else {
+            $data['title'] = 'Detail Pesanan';
+
+            $data['admindata'] = $this->Admin_model->getAdmin();
+            $data['email'] = $this->Konsumen_model->view_where("email_conf", ['id' => 1])->row();
+            // $data = $this->
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('admin/email', $data);
+            $this->load->view('templates/footer', $data);
+        }
+    }
 }

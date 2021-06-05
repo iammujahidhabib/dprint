@@ -87,11 +87,11 @@
 					<i class="fas fa-fw fa-folder"></i>
 					<span>Postingan</span></a>
 			</li>
-			<!-- <li class="nav-item">
-				<a class="nav-link" href="<?= base_url('admin/kategori') ?>">
+			<li class="nav-item">
+				<a class="nav-link" href="<?= base_url('admin/email') ?>">
 					<i class="fas fa-fw fa-folder"></i>
-					<span>Kategori</span></a>
-			</li> -->
+					<span>Konfigurasi Email</span></a>
+			</li>
 
 			<hr class="sidebar-divider d-none d-md-block">
 

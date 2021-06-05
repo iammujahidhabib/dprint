@@ -10,6 +10,14 @@ class Auth_model extends CI_model
     {
         $this->db->insert($tabel, $data);
     }
+    public function view_where($tabel, $where) {
+        $this->db->where($where);
+        return $this->db->get($tabel);
+    }
+    public function update($tabel, $where, $data) {
+        $this->db->where($where);
+        return $this->db->update($tabel, $data);
+    }
 
     public function cekUnameOrEmail($type, $name)
     {

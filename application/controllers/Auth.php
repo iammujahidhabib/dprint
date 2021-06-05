@@ -9,6 +9,7 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Auth_model');
+        $this->load->model('Konsumen_model');
     }
 
     //vera fauziah
@@ -213,12 +214,15 @@ class Auth extends CI_Controller
 
     private function _sendEmail($token, $type)
     {
+        $email = $this->Konsumen_model->view_where("email_conf",['id'=>1])->row();
+        $akun_email = $email->email;
+        $akun_password = $email->password;
         $this->load->library('email');
         $config = [
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'admnartgraph@gmail.com',
-            'smtp_pass' => 'SanGatRahAsIA1211;',
+            'smtp_user' => $akun_email,
+            'smtp_pass' => $akun_password,
             'smtp_port' => 465,
             'mailtype' => 'html',
             'charset' => 'utf-8',
