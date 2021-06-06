@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Waktu pembuatan: 03 Jun 2021 pada 15.47
--- Versi server: 5.7.32
--- Versi PHP: 7.4.12
+-- Generation Time: Jun 06, 2021 at 04:16 AM
+-- Server version: 5.7.32
+-- PHP Version: 7.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `barang`
+-- Table structure for table `barang`
 --
 
 CREATE TABLE `barang` (
@@ -32,7 +32,7 @@ CREATE TABLE `barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `barang`
+-- Dumping data for table `barang`
 --
 
 INSERT INTO `barang` (`idbarang`, `nama`, `keterangan`, `harga`, `stok`, `kategori`, `foto`, `owner`) VALUES
@@ -56,7 +56,26 @@ INSERT INTO `barang` (`idbarang`, `nama`, `keterangan`, `harga`, `stok`, `katego
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `feedback`
+-- Table structure for table `email_conf`
+--
+
+CREATE TABLE `email_conf` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `email_conf`
+--
+
+INSERT INTO `email_conf` (`id`, `email`, `password`) VALUES
+(1, 'admndprnt@gmail.com', 'S4N6atAman!');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedback`
 --
 
 CREATE TABLE `feedback` (
@@ -69,7 +88,7 @@ CREATE TABLE `feedback` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `feedback`
+-- Dumping data for table `feedback`
 --
 
 INSERT INTO `feedback` (`id_feedback`, `id_pesanan`, `nama_pemesan`, `bintang`, `keterangan`, `foto_hasil`) VALUES
@@ -80,7 +99,7 @@ INSERT INTO `feedback` (`id_feedback`, `id_pesanan`, `nama_pemesan`, `bintang`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Table structure for table `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -93,11 +112,11 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kategori`
+-- Dumping data for table `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `gambar_kategori`, `list_paket`, `mulai_harga`, `deskripsi`) VALUES
-(1, 'TShirt', 'tshirt.jpeg', 'tshirt.png', '125.000 - 175.000', 'Caramels tootsie roll carrot cake sugar plum. Sweet roll jelly bear claw liquorice.\r\n                                Gingerbread lollipop dragée cake. Pie topping jelly-o. Fruitcake dragée candy canes\r\n                                tootsie roll. Pastry jelly-o cupcake. Bonbon brownie soufflé muffin.'),
+(1, 'TShirt', 'tshirt.jpeg', 'tshirt.png', '125.000 - 175.000', 'Caramels tootsie roll carrot cake sugar plum. Sweet roll jelly bear claw liquorice. Gingerbread lollipop dragée cake. Pie topping jelly-o. Fruitcake dragée candy canes tootsie roll. Pastry jelly-o cupcake. Bonbon brownie soufflé muffin.'),
 (2, 'Almamater', 'almet.jpeg', 'almamater.png', '125.000 - 175.000', 'Caramels tootsie roll carrot cake sugar plum. Sweet roll jelly bear claw liquorice. Gingerbread lollipop dragée cake. Pie topping jelly-o. Fruitcake dragée candy canes tootsie roll. Pastry jelly-o cupcake. Bonbon brownie soufflé muffin. Caramels tootsie roll carrot cake sugar plum. Sweet roll jelly bear claw liquorice. Gingerbread lollipop dragée cake. Pie topping jelly-o. Fruitcake dragée candy canes tootsie roll. Pastry jelly-o cupcake. Bonbon brownie soufflé muffin.'),
 (3, 'Jaket', 'jaket.jpeg', 'jaket.png', '170.000 - 300.000', NULL),
 (4, 'Polo', 'polo.jpeg', 'polo.png', '90.000 - 115.000', NULL),
@@ -109,7 +128,7 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `gambar_kategori`, `list
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pakaiian`
+-- Table structure for table `pakaiian`
 --
 
 CREATE TABLE `pakaiian` (
@@ -127,7 +146,7 @@ CREATE TABLE `pakaiian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pakaiian`
+-- Dumping data for table `pakaiian`
 --
 
 INSERT INTO `pakaiian` (`id_pakaiian`, `id_kategori`, `paket`, `kelas`, `jenis_bahan`, `jenis_bordir`, `kategori_jersey`, `jenis_sablon`, `ketebalan`, `harga`, `keterangan`) VALUES
@@ -141,7 +160,7 @@ INSERT INTO `pakaiian` (`id_pakaiian`, `id_kategori`, `paket`, `kelas`, `jenis_b
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pembayaran`
+-- Table structure for table `pembayaran`
 --
 
 CREATE TABLE `pembayaran` (
@@ -161,7 +180,7 @@ CREATE TABLE `pembayaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pembayaran`
+-- Dumping data for table `pembayaran`
 --
 
 INSERT INTO `pembayaran` (`id_bayar`, `id_user`, `tanggal_bayar`, `total_bayar`, `nama_pemesan`, `email`, `phone`, `alamat_rumah`, `jenis_bayar`, `bukti_bayar`, `bukti_dp`, `notes`, `penilaiian`) VALUES
@@ -181,7 +200,7 @@ INSERT INTO `pembayaran` (`id_bayar`, `id_user`, `tanggal_bayar`, `total_bayar`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pemesanan`
+-- Table structure for table `pemesanan`
 --
 
 CREATE TABLE `pemesanan` (
@@ -205,7 +224,7 @@ CREATE TABLE `pemesanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pemesanan`
+-- Dumping data for table `pemesanan`
 --
 
 INSERT INTO `pemesanan` (`id_pesanan`, `id_barang`, `id_kategori`, `ukuran_s`, `ukuran_m`, `ukuran_l`, `ukuran_xl`, `ukuran_xxl`, `ukuran_3xl`, `jumlah_barang`, `harga_paket`, `total_harga`, `status_pesanan`, `tanggal_checkout`, `desain_produk`, `id_user`, `id_bayar`) VALUES
@@ -221,7 +240,7 @@ INSERT INTO `pemesanan` (`id_pesanan`, `id_barang`, `id_kategori`, `ukuran_s`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `postingan`
+-- Table structure for table `postingan`
 --
 
 CREATE TABLE `postingan` (
@@ -235,7 +254,7 @@ CREATE TABLE `postingan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `postingan`
+-- Dumping data for table `postingan`
 --
 
 INSERT INTO `postingan` (`id_posting`, `gambar`, `gambar2`, `id_kategori`, `jenis`, `caption`, `tanggal_upload`) VALUES
@@ -246,7 +265,7 @@ INSERT INTO `postingan` (`id_posting`, `gambar`, `gambar2`, `id_kategori`, `jeni
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE `role` (
@@ -255,7 +274,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`role_id`, `jenis_pengguna`) VALUES
@@ -268,7 +287,7 @@ INSERT INTO `role` (`role_id`, `jenis_pengguna`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -285,7 +304,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `role_id`, `fullname`, `phonenumber`, `username`, `email`, `password`, `alamat`, `created_at`, `status`) VALUES
@@ -293,12 +312,12 @@ INSERT INTO `user` (`id_user`, `role_id`, `fullname`, `phonenumber`, `username`,
 (3, 5, NULL, NULL, 'desy', 'desyRahmat@gmail.com', '$2y$10$J3l2QCYtuxKJPJ3QzMW70ebsZV1UT1Q93WNP.J6z8cTurkpL8pJUy', 'Bandung Barat', '15-11-2020, 09:01:55', 1),
 (4, 2, NULL, NULL, 'vera', 'veraardianipertiwi@gmail.com', '$2y$10$Nl/u4RBc.Hfsi7KalkCs2u/Ocd9.f6plwM3QkPqCQhkvcdYH95R16', 'Bandung', '08-12-2020, 12:28:46', 1),
 (13, 2, NULL, NULL, 'ikko', 'm.abizard1123@gmail.com', '$2y$10$uv08QQNurfwpmKUm6E1jTeQ6DNJEFlrVYtIabTiLM3caA51u1QRuy', '', '11-02-2021, 06:19:18', 1),
-(15, 2, 'Oliver Jumahid', '0898989898', 'jumahid', 'jmhdoaoe@gmail.com', '$2y$10$E94.j2qsTsi9oZyNWqN34Omz1IPKy0.aWJjnzoy6tldV7.ma5SNue', 'Jl Pd Kelapa, Duren Sawit, Jakarta Timur', '01-06-2021, 11:12:30', 2);
+(15, 2, 'Oliver Jumahid', '0898989898', 'jumahid', 'jmhdoaoe@gmail.com', '$2y$10$E94.j2qsTsi9oZyNWqN34Omz1IPKy0.aWJjnzoy6tldV7.ma5SNue', 'Jl Pd Kelapa, Duren Sawit, Jakarta Timur', '01-06-2021, 11:12:30', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_token`
+-- Table structure for table `user_token`
 --
 
 CREATE TABLE `user_token` (
@@ -309,51 +328,60 @@ CREATE TABLE `user_token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user_token`
+-- Dumping data for table `user_token`
 --
 
 INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
-(1, 'm.abizard1123@gmail.com', 'OtxQM5uyFDW2Yx8WIofzq37CilvYkRkOuX+N1B0bCVM=', 1619500159);
+(1, 'm.abizard1123@gmail.com', 'OtxQM5uyFDW2Yx8WIofzq37CilvYkRkOuX+N1B0bCVM=', 1619500159),
+(2, 'mujahidhabibullah99@gmail.com', 'aOIt5e0C1sbsDjjNxrvqN9FVTXDjfu1iVvNOVwYVKQQ=', 1622913862),
+(3, 'mujahidhabibullah99@gmail.com', 'BXJ6VMks36yI64LyT74jDlCjRCuT0eHis2IDOrlHO1c=', 1622913936),
+(4, 'mujahidhabibullah99@gmail.com', 'sa8n9zsp/ymCGPaOdA0H0fAAd8ShiwD0ikVvb9Zt4AM=', 1622914012);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `barang`
+-- Indexes for table `barang`
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`idbarang`);
 
 --
--- Indeks untuk tabel `feedback`
+-- Indexes for table `email_conf`
+--
+ALTER TABLE `email_conf`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `feedback`
 --
 ALTER TABLE `feedback`
   ADD PRIMARY KEY (`id_feedback`),
   ADD KEY `fk_feedback_pemesanan` (`id_pesanan`);
 
 --
--- Indeks untuk tabel `kategori`
+-- Indexes for table `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `pakaiian`
+-- Indexes for table `pakaiian`
 --
 ALTER TABLE `pakaiian`
   ADD PRIMARY KEY (`id_pakaiian`),
   ADD KEY `fk_pakaiian_kategori` (`id_kategori`);
 
 --
--- Indeks untuk tabel `pembayaran`
+-- Indexes for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`id_bayar`),
   ADD KEY `fk_pembayaran_user` (`id_user`);
 
 --
--- Indeks untuk tabel `pemesanan`
+-- Indexes for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
   ADD PRIMARY KEY (`id_pesanan`),
@@ -362,118 +390,124 @@ ALTER TABLE `pemesanan`
   ADD KEY `fk_pemesanan_user` (`id_user`);
 
 --
--- Indeks untuk tabel `postingan`
+-- Indexes for table `postingan`
 --
 ALTER TABLE `postingan`
   ADD PRIMARY KEY (`id_posting`);
 
 --
--- Indeks untuk tabel `role`
+-- Indexes for table `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`role_id`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`),
   ADD KEY `fk_user_role` (`role_id`);
 
 --
--- Indeks untuk tabel `user_token`
+-- Indexes for table `user_token`
 --
 ALTER TABLE `user_token`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `barang`
+-- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
   MODIFY `idbarang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
--- AUTO_INCREMENT untuk tabel `feedback`
+-- AUTO_INCREMENT for table `email_conf`
+--
+ALTER TABLE `email_conf`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
   MODIFY `id_feedback` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `kategori`
+-- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `pakaiian`
+-- AUTO_INCREMENT for table `pakaiian`
 --
 ALTER TABLE `pakaiian`
   MODIFY `id_pakaiian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `pembayaran`
+-- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
   MODIFY `id_bayar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT untuk tabel `pemesanan`
+-- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
   MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `postingan`
+-- AUTO_INCREMENT for table `postingan`
 --
 ALTER TABLE `postingan`
   MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `role`
+-- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
   MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT untuk tabel `user_token`
+-- AUTO_INCREMENT for table `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `feedback`
+-- Constraints for table `feedback`
 --
 ALTER TABLE `feedback`
   ADD CONSTRAINT `fk_feedback_pemesanan` FOREIGN KEY (`id_pesanan`) REFERENCES `pemesanan` (`id_pesanan`) ON DELETE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `pakaiian`
+-- Constraints for table `pakaiian`
 --
 ALTER TABLE `pakaiian`
   ADD CONSTRAINT `fk_pakaiian_kategori` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`);
 
 --
--- Ketidakleluasaan untuk tabel `pembayaran`
+-- Constraints for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
   ADD CONSTRAINT `fk_pembayaran_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
--- Ketidakleluasaan untuk tabel `pemesanan`
+-- Constraints for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
   ADD CONSTRAINT `fk_pemesanan_kategori` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`),
@@ -481,7 +515,7 @@ ALTER TABLE `pemesanan`
   ADD CONSTRAINT `fk_pemesanan_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
--- Ketidakleluasaan untuk tabel `user`
+-- Constraints for table `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `fk_user_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON DELETE SET NULL;
