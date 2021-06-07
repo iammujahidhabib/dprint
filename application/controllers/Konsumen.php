@@ -947,8 +947,8 @@ class Konsumen extends CI_Controller
         $notes = $this->input->post('notes');
 
         $id_pesanan = $this->input->post('id_pesanan');
-        if (strpos($id_pesanan, '_') == true) {
-            $id_pesan_baru = explode('_', $id_pesanan);
+        if (strpos($id_pesanan, "_") !== false) {
+            $id_pesan_baru = explode("_", $id_pesanan);
             print_r($id_pesan_baru);
         } else {
             $id_pesan_baru = $id_pesanan;
@@ -998,28 +998,28 @@ class Konsumen extends CI_Controller
             'status_pesanan' => 'pending',
             'id_bayar' => $id_bayar['id_bayar'],
         ];
-        // if (strpos($id_pesanan, '_') == true) {
-        //     $id_pesan_baru = explode('_', $id_pesanan);
-        //     for ($i = 0; $i < count($id_pesan_baru); $i++) {
-        //         $data_updd = [
-        //             'id_pesanan' => $id_pesan_baru[$i],
-        //             // 'status_pesanan' => 'checkout',
-        //         ];
-        //         $this->Konsumen_model->update('pemesanan', $data_updd, $data_update_pesanan);
-        //     }
-        // } else {
-        //     $id_pesan_baru = $id_pesanan;
-        //     $data_updd = [
-        //         'id_pesanan' => $id_pesan_baru,
-        //         // 'status_pesanan' => 'checkout',
-        //     ];
-        //     $this->Konsumen_model->update('pemesanan', $data_updd, $data_update_pesanan);
-        // }
-        $data_updd = [
-            'id_pesanan' => $id_pesanan,
-            // 'status_pesanan' => 'checkout',
-        ];
-        $this->Konsumen_model->update('pemesanan', $data_updd, $data_update_pesanan);
+        if (strpos($id_pesanan, "_") !== false) {
+            $id_pesan_baru = explode('_', $id_pesanan);
+            for ($i = 0; $i < count($id_pesan_baru); $i++) {
+                $data_updd = [
+                    'id_pesanan' => $id_pesan_baru[$i],
+                    // 'status_pesanan' => 'checkout',
+                ];
+                $this->Konsumen_model->update('pemesanan', $data_updd, $data_update_pesanan);
+            }
+        } else {
+            $id_pesan_baru = $id_pesanan;
+            $data_updd = [
+                'id_pesanan' => $id_pesan_baru,
+                // 'status_pesanan' => 'checkout',
+            ];
+            $this->Konsumen_model->update('pemesanan', $data_updd, $data_update_pesanan);
+        }
+        // $data_updd = [
+        //     'id_pesanan' => $id_pesanan,
+        //     // 'status_pesanan' => 'checkout',
+        // ];
+        // $this->Konsumen_model->update('pemesanan', $data_updd, $data_update_pesanan);
 
         // echo "<pre>";
         // print_r($id_bayar);
@@ -1036,9 +1036,9 @@ class Konsumen extends CI_Controller
 
     public function kirimStatusPesanan($email)
     {
-        $email = $this->Konsumen_model->view_where("email_conf",['id'=>1])->row();
-        $akun_email = $email->email;
-        $akun_password = $email->password;
+        $email_adm = $this->Konsumen_model->view_where("email_conf",['id'=>1])->row();
+        $akun_email = $email_adm->email;
+        $akun_password = $email_adm->password;
         $this->load->library('email');
         $config = [
             'protocol' => 'smtp',

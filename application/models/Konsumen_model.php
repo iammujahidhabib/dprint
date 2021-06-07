@@ -162,7 +162,11 @@ class Konsumen_model extends CI_model
     }
     public function getPesananbyId($id, $stat)
     {
-        $query = "SELECT pemesanan.*,user.username,kategori.nama_kategori,pembayaran.nama_pemesan,pembayaran.jenis_bayar,pembayaran.bukti_bayar,pembayaran.bukti_dp, SUM(jumlah_barang) jmlBarang,SUM(total_bayar) total_bayar FROM `pembayaran` JOIN `pemesanan` ON `pembayaran`.`id_bayar` = `pemesanan`.`id_bayar` JOIN `kategori` ON `pemesanan`.`id_kategori` = `kategori`.`id_kategori` JOIN `user` ON `user`.`id_user` = `pemesanan`.`id_user` 
+        $query = "SELECT `pemesanan`.`id_bayar`,pemesanan.status_pesanan, `pembayaran`.`nama_pemesan`, `pembayaran`.`jenis_bayar`, `pembayaran`.`bukti_bayar`, `pembayaran`.`bukti_dp`, SUM(jumlah_barang) jmlBarang, SUM(total_harga) total_harga, total_bayar
+        FROM `pembayaran` 
+        JOIN `pemesanan` ON `pembayaran`.`id_bayar` = `pemesanan`.`id_bayar` 
+        JOIN `kategori` ON `pemesanan`.`id_kategori` = `kategori`.`id_kategori` 
+        JOIN `user` ON `user`.`id_user` = `pemesanan`.`id_user` 
         WHERE pemesanan.id_user=$id AND status_pesanan LIKE '%$stat%'
         GROUP BY `pemesanan`.`id_bayar`";
         // echo $query;
